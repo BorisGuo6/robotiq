@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Software License Agreement (BSD License)
 #
@@ -40,8 +40,6 @@ Command-line interface for receiving and interpreting the status of a 2F gripper
 
 This serves as an example for receiving messages from the 'Robotiq2FGripperRobotInput' topic using the 'Robotiq2FGripper_robot_input' msg type and interpreting the corresponding status of the 2F gripper.
 """
-
-from __future__ import print_function
 
 import roslib; roslib.load_manifest('robotiq_2f_gripper_control')
 import rospy

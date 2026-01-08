@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Software License Agreement (BSD License)
 #
@@ -41,17 +41,11 @@ Command-line interface for sending simple commands to a ROS node controlling a 2
 This serves as an example for publishing messages on the 'Robotiq2FGripperRobotOutput' topic using the 'Robotiq2FGripper_robot_output' msg type for sending commands to a 2F gripper.
 """
 
-from __future__ import print_function
-
 import roslib; roslib.load_manifest('robotiq_2f_gripper_control')
 import rospy
 from robotiq_2f_gripper_control.msg import _Robotiq2FGripper_robot_output  as outputMsg
 from time import sleep
 
-try:
-    input = raw_input
-except NameError:
-    pass
 
 def genCommand(char, command):
     """Update the command according to the character entered by the user."""
@@ -134,13 +128,13 @@ def askForCommand(command):
 
     strAskForCommand += '-->'
 
-    return input(strAskForCommand)
+    return raw_input(strAskForCommand)
 
 def publisher():
     """Main loop which requests new commands and publish them on the Robotiq2FGripperRobotOutput topic."""
     rospy.init_node('Robotiq2FGripperSimpleController')
 
-    pub = rospy.Publisher('Robotiq2FGripperRobotOutput', outputMsg.Robotiq2FGripper_robot_output)
+    pub = rospy.Publisher('Robotiq2FGripperRobotOutput', outputMsg.Robotiq2FGripper_robot_output, queue_size=10)
 
     command = outputMsg.Robotiq2FGripper_robot_output();
 
